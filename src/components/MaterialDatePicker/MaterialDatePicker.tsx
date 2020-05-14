@@ -1,39 +1,61 @@
+import 'date-fns';
 import React from 'react';
-import './MaterialDatePicker.css';
+import Grid from '@material-ui/core/Grid';
+import DateFnsUtils from '@date-io/date-fns';
+import {
+  MuiPickersUtilsProvider,
+  KeyboardTimePicker,
+  KeyboardDatePicker,
+} from '@material-ui/pickers';
 
-const MaterialDatePicker: React.FC = () => {
-  return (
-    <div className="calendar">
-      <div className="calendar-day">
-        <div className="calendar-day-label">
-          <span>1 February</span>
-        </div>
-        <div className="calendar-events">
-          <div className="calendar-event">
-            <div className="calendar-event-info">
-              <div className="calendar-event-time">10:00 - 12:00</div>
-              <div className="calendar-event-title">Learning TypeScript</div>
-            </div>
-            <button className="calendar-event-delete-button">&times;</button>
-          </div>
-        </div>
-      </div>
-      <div className="calendar-day">
-        <div className="calendar-day-label">
-          <span>1 February</span>
-        </div>
-        <div className="calendar-events">
-          <div className="calendar-event">
-            <div className="calendar-event-info">
-              <div className="calendar-event-time">10:00 - 12:00</div>
-              <div className="calendar-event-title">Learning TypeScript</div>
-            </div>
-            <button className="calendar-event-delete-button">&times;</button>
-          </div>
-        </div>
-      </div>
-    </div>
+export default function MateriaDatePicker() {
+  // The first commit of Material-UI
+  const [selectedDate, setSelectedDate] = React.useState<Date | null>(
+    new Date('2014-08-18T21:11:54'),
   );
-};
 
-export default MaterialDatePicker;
+  const handleDateChange = (date: Date | null) => {
+    setSelectedDate(date);
+  };
+
+  return (
+    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+      <Grid container justify="space-around">
+        <KeyboardDatePicker
+          disableToolbar
+          variant="inline"
+          format="MM/dd/yyyy"
+          margin="normal"
+          id="date-picker-inline"
+          label="Date picker inline"
+          value={selectedDate}
+          onChange={handleDateChange}
+          KeyboardButtonProps={{
+            'aria-label': 'change date',
+          }}
+        />
+        <KeyboardDatePicker
+          margin="normal"
+          id="date-picker-dialog"
+          label="Date picker dialog"
+          format="MM/dd/yyyy"
+          value={selectedDate}
+          onChange={handleDateChange}
+          KeyboardButtonProps={{
+            'aria-label': 'change date',
+          }}
+        />
+        <KeyboardTimePicker
+          margin="normal"
+          id="time-picker"
+          label="Time picker"
+          value={selectedDate}
+          onChange={handleDateChange}
+          KeyboardButtonProps={{
+            'aria-label': 'change time',
+          }}
+        />
+      </Grid>
+    </MuiPickersUtilsProvider>
+  );
+}

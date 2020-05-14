@@ -3,6 +3,7 @@ import './App.css';
 import Recorder from '../Recorder';
 import Calendar from '../Calendar';
 import MaterialDatePicker from '../MaterialDatePicker';
+import Button from '@material-ui/core/Button';
 
 const App: React.FC = () => {
   return (
@@ -10,6 +11,9 @@ const App: React.FC = () => {
       <Recorder />
       <Calendar />
       <MaterialDatePicker />
+      <Button variant="contained" color="primary">
+        Hello World
+      </Button>
     </div>
   );
 };
