@@ -1,3 +1,11 @@
+To run the Front project:
+- yarn start
+
+To run the project with the Fake Api
+
+- npm run dev
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
